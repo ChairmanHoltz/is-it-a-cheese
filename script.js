@@ -1,48 +1,7 @@
 'use strict';
 
 const btn = document.getElementById('btn');
-const btn2 = document.getElementById('btn2');
 const text = document.querySelector('.text');
-
-// const getLocation = function () {
-//   return new Promise(function (resolve, reject) {
-//     navigator.geolocation.getCurrentPosition(resolve, reject);
-//   });
-// };
-
-// const whereAmI = async function () {
-//   const curLocation = await getLocation();
-//   console.log(curLocation);
-//   const { latitude: lat, longitude: lng } = curLocation.coords;
-
-//   const revGeo = await fetch(
-//     `https://geocode.xyz/${lat},${lng}?geoit=json&auth=169542281086562212905x84985`
-//   );
-//   const geoJSON = await revGeo.json();
-//   console.log(geoJSON);
-//   text.textContent = `You are in ${geoJSON.city}, ${geoJSON.statename}`;
-// };
-
-const whereAmIApp = {
-  getLocation() {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-  },
-
-  async whereAmI() {
-    const curLocation = await this.getLocation();
-    console.log(curLocation);
-    const { latitude: lat, longitude: lng } = curLocation.coords;
-
-    const revGeo = await fetch(
-      `https://geocode.xyz/${lat},${lng}?geoit=json&auth=169542281086562212905x84985`
-    );
-    const geoJSON = await revGeo.json();
-    console.log(geoJSON);
-    text.textContent = `You are in ${geoJSON.city}, ${geoJSON.statename}`;
-  },
-};
 
 cheese.focus();
 
@@ -66,8 +25,7 @@ const isItACheese = {
   },
 };
 
-btn.addEventListener('click', whereAmIApp.whereAmI.bind(whereAmIApp));
-btn2.addEventListener('click', isItACheese.checkCheese.bind(isItACheese));
+btn.addEventListener('click', isItACheese.checkCheese.bind(isItACheese));
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') isItACheese.checkCheese.bind(isItACheese)();
 });
