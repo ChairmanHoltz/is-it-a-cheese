@@ -1,12 +1,10 @@
 'use strict';
 
-const btn = document.getElementById('btn');
-const text = document.querySelector('.text');
-
-cheese.focus();
-
 const isItACheese = {
   cheeseBox: document.getElementById('cheese'),
+  tryAgainBtn: document.getElementById('try_again'),
+  btn: document.getElementById('btn'),
+  text: document.querySelector('.text'),
   async checkCheese() {
     const cheese = this.cheeseBox.value;
     const cheeseData = await fetch(
@@ -20,12 +18,20 @@ const isItACheese = {
       return cur.foodCategory === 'Cheese' ? (acc = true) : acc;
     }, false);
     cheeseBoolean
-      ? (text.textContent = `${formattedCheeseStr} is a cheese!`)
-      : (text.textContent = `${formattedCheeseStr} is NOT a cheese!`);
+      ? (this.text.textContent = `${formattedCheeseStr} is a cheese!`)
+      : (this.text.textContent = `${formattedCheeseStr} is NOT a cheese!`);
+    this.showTryAgainBtn();
+  },
+  showTryAgainBtn() {
+    this.tryAgainBtn.style.display = 'block';
   },
 };
 
-btn.addEventListener('click', isItACheese.checkCheese.bind(isItACheese));
+isItACheese.btn.addEventListener('click', isItACheese.checkCheese.bind(isItACheese));
 window.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') isItACheese.checkCheese.bind(isItACheese)();
 });
+isItACheese.tryAgainBtn.addEventListener('click', function () {
+  location.reload();
+});
+isItACheese.cheeseBox.focus();
