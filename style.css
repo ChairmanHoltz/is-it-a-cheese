@@ -10,3 +10,12 @@
 .space {
   margin: 1em;
 }
+
+.hide {
+  display: none;
+}
+
+#try_again {
+  margin-top: 80%;
+}
+
