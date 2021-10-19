@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 const isItACheese = {
-  cheeseBox: document.getElementById('cheese'),
-  tryAgainBtn: document.getElementById('try_again'),
-  btn: document.getElementById('btn'),
-  text: document.querySelector('.text'),
+  cheeseBox: document.getElementById("cheese"),
+  tryAgainBtn: document.getElementById("try_again"),
+  btn: document.getElementById("btn"),
+  text: document.querySelector(".text"),
   async checkCheese() {
     const cheese = this.cheeseBox.value;
     const cheeseData = await fetch(
@@ -13,9 +13,9 @@ const isItACheese = {
     const cheeseJSON = await cheeseData.json();
     const formattedCheeseStr =
       cheese.slice(0, 1).toUpperCase() + cheese.slice(1).toLowerCase();
-    if (cheese === '') return;
+    if (cheese === "") return;
     const cheeseBoolean = cheeseJSON.foods.reduce((acc, cur) => {
-      return cur.foodCategory === 'Cheese' ? (acc = true) : acc;
+      return cur.foodCategory === "Cheese" ? (acc = true) : acc;
     }, false);
     cheeseBoolean
       ? (this.text.textContent = `${formattedCheeseStr} is a cheese!`)
@@ -23,15 +23,19 @@ const isItACheese = {
     this.showTryAgainBtn();
   },
   showTryAgainBtn() {
-    this.tryAgainBtn.style.display = 'block';
+    this.tryAgainBtn.style.display = "block";
+    this.tryAgainBtn.focus();
   },
 };
 
-isItACheese.btn.addEventListener('click', isItACheese.checkCheese.bind(isItACheese));
-window.addEventListener('keydown', function (e) {
-  if (e.key === 'Enter') isItACheese.checkCheese.bind(isItACheese)();
+isItACheese.btn.addEventListener(
+  "click",
+  isItACheese.checkCheese.bind(isItACheese)
+);
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") isItACheese.checkCheese.bind(isItACheese)();
 });
-isItACheese.tryAgainBtn.addEventListener('click', function () {
+isItACheese.tryAgainBtn.addEventListener("click", function () {
   location.reload();
 });
 isItACheese.cheeseBox.focus();
