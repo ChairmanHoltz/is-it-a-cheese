@@ -36,7 +36,7 @@ window.addEventListener("keydown", function (e) {
   if (e.key === "Enter") isItACheese.checkCheese.bind(isItACheese)();
 });
 isItACheese.tryAgainBtn.addEventListener("click", function () {
+  isItACheese.cheeseBox.value = ''; 
   location.reload();
-  isItACheese.cheeseBox.value = '';  
 });
 isItACheese.cheeseBox.focus();
