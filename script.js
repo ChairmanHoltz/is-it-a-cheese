@@ -38,5 +38,5 @@ window.addEventListener("keydown", function (e) {
 isItACheese.tryAgainBtn.addEventListener("click", function () {
   location.reload();
 });
-isItACheese.cheeseBox.value = '';
+isItACheese.cheeseBox.textContent = '';
 isItACheese.cheeseBox.focus();
