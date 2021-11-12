@@ -10,6 +10,7 @@ const isItACheese = {
     const cheeseData = await fetch(
       `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=pUObyb1y4ANkuLuJjUpRtYzy76u3p59iEja90ayw&query=${cheese}&pageSize=5`
     );
+    isItACheese.cheeseBox.value = "";
     const cheeseJSON = await cheeseData.json();
     const formattedCheeseStr =
       cheese.slice(0, 1).toUpperCase() + cheese.slice(1).toLowerCase();
@@ -36,7 +37,6 @@ window.addEventListener("keydown", function (e) {
   if (e.key === "Enter") isItACheese.checkCheese.bind(isItACheese)();
 });
 isItACheese.tryAgainBtn.addEventListener("click", function () {
-  isItACheese.cheeseBox.value = ''; 
   location.reload();
 });
 isItACheese.cheeseBox.focus();
